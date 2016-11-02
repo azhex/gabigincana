@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">GabiGincana</string>
+    <string name="app_name">SMRGincana</string>
+    <string name="creditos">
+        Proyecto Gincana\n
+        IES Villaverde\n
+        Sistemas Microinformaticos y Redes 1º\n\n
+
+        Profesores:\n
+        -Pedro Pereda\n\n
+
+        Programación:\n
+        -Gabriel Revilla Horcas\n
+        -Alberto Ferrero Sánchez\n
+        -Sergio Guzmán Samos\n
+        -Adrian Dobarro Armendáriz\n
+        -Chen\n\n
+
+        Sonido:\n
+        -Fernando Vega Catalán\n\n
+
+        Librerias:\n
+        -journeyapps/zxing-android-embedded (QR Reader)\n
+    </string>
 </resources>

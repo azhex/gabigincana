@@ -4,49 +4,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/draw_blue_background"
     android:weightSum="1">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/draw_blue_background">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/draw_main_box"
+            android:layout_margin="10dp"
             android:padding="15dp"
-            android:layout_margin="10dp">
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gincana login"
+                android:text="Gincana ajustes"
                 android:textAlignment="center"
                 android:textSize="25dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="normal|bold"
                 android:fontFamily="sans-serif-condensed" />
 
+            <TextView
+                android:text="Añadir servidor:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_marginBottom="10dp"
+                android:maxWidth="350dp"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inUser"
+                android:id="@+id/inIp"
+                android:ems="10"
                 android:background="@drawable/draw_inputs"
                 android:layout_marginBottom="10dp"
-                android:hint="Nombre de usuario"
+                android:hint="IP"
                 android:textSize="16dp"
                 android:maxWidth="350dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inClave"
-                android:background="@drawable/draw_inputs"
+                android:inputType="numberDecimal"
+                android:ems="10"
                 android:layout_marginBottom="10dp"
-                android:hint="Clave de sesión"
+                android:id="@+id/inPort"
+                android:hint="Puerto"
+                android:background="@drawable/draw_inputs"
                 android:textSize="16dp"
+                android:maxWidth="350dp"/>
+
+            <Button
+                android:text="Añadir servidor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAddServer"
+                android:layout_marginBottom="10dp"
+                android:maxWidth="350dp"
+                style="@style/Widget.AppCompat.Button.Colored" />
+
+            <TextView
+                android:text="Eliminar servidor:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_marginBottom="10dp"
                 android:maxWidth="350dp"/>
 
             <LinearLayout
@@ -55,29 +84,33 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp">
 
-                <TextView
-                    android:text="Servidor:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView2"
-                    android:layout_weight="0.25" />
-
-                <Spinner
-                    android:layout_width="237dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spHost"
-                    android:background="@drawable/draw_inputs"
-                    android:layout_weight="0.75" />
             </LinearLayout>
 
-            <Button
-                android:text="Entrar"
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnLogin"
+                android:id="@+id/spServers"
+                android:background="@drawable/draw_inputs"
                 android:layout_marginBottom="10dp"
+                android:maxWidth="350dp"/>
+
+            <Button
+                android:text="Eliminar servidor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRmServer"
+                android:layout_marginBottom="5dp"
                 android:maxWidth="350dp"
                 style="@style/Widget.AppCompat.Button.Colored" />
+
+            <Button
+                android:text="Volver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnBack"
+                android:layout_marginBottom="10dp"
+                android:maxWidth="350dp"
+                style="@style/Widget.AppCompat.Button.Colored"/>
 
             <TextView
                 android:text="IES Villaverde SMR1 @ 2016"

@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="gincanaBoton" parent="AppTheme">
+        <item name="android:minHeight">39dp</item>
+    </style>
 </resources>
