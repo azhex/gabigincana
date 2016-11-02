@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -16,24 +17,30 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
 
 public class GUI {
 	public JFrame frm;
 	public JTextField inPort, inMaxClients;
 	public JButton btnIniciarServidor, btnDesconectarServidor;
-	private JTextField textField;
+	public JTextField textField;
+	public JTextArea txtInfo, txtLog;
+	public JScrollPane scllClients, scllLog;
 	
 	public GUI(){
 		frm = new JFrame("GabiGincana");
 		frm.getContentPane().setLayout(null);
-		frm.setSize(444, 620);
+		frm.setSize(445, 685);
 		frm.setDefaultCloseOperation(frm.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -71,23 +78,9 @@ public class GUI {
 		btnDesconectarServidor.setBounds(215, 50, 182, 23);
 		panel.add(btnDesconectarServidor);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.DARK_GRAY);
-		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBounds(10, 150, 408, 217);
-		frm.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JTextArea txtLog = new JTextArea();
-		txtLog.setEditable(false);
-		txtLog.setForeground(Color.GREEN);
-		txtLog.setBounds(10, 11, 388, 195);
-		txtLog.setBackground(Color.DARK_GRAY);
-		panel_1.add(txtLog);
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Control", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(10, 486, 408, 84);
+		panel_2.setBounds(10, 547, 408, 88);
 		frm.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -100,34 +93,58 @@ public class GUI {
 		lblClientenumero.setBounds(11, 29, 107, 14);
 		panel_2.add(lblClientenumero);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Expulsar jugador", "A\u00F1adir punto al jugador", "Quitar punto al jugador", "Reiniciar juego del jugador", "Reiniciar juego para todos"}));
-		comboBox.setBounds(184, 26, 214, 20);
-		panel_2.add(comboBox);
+		JComboBox cbCommandsList = new JComboBox();
+		cbCommandsList.setBackground(new Color(220, 220, 220));
+		cbCommandsList.setModel(new DefaultComboBoxModel(new String[] {"Expulsar jugador", "A\u00F1adir punto al jugador", "Quitar punto al jugador", "Reiniciar juego del jugador", "Reiniciar juego para todos"}));
+		cbCommandsList.setBounds(184, 26, 214, 20);
+		panel_2.add(cbCommandsList);
 		
 		JButton btnEjecutarComando = new JButton("Ejecutar comando");
-		btnEjecutarComando.setBounds(245, 57, 153, 23);
+		btnEjecutarComando.setBackground(new Color(220, 220, 220));
+		btnEjecutarComando.setBounds(11, 54, 387, 23);
 		panel_2.add(btnEjecutarComando);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 378, 408, 97);
-		frm.getContentPane().add(panel_3);
-		panel_3.setLayout(null);
-		panel_3.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_3.setBackground(Color.DARK_GRAY);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 11, 388, 75);
-		panel_3.add(textArea);
-		textArea.setForeground(Color.GREEN);
-		textArea.setEditable(false);
-		textArea.setBackground(Color.DARK_GRAY);
-		
-		JLabel lblGabigincanaControlPanel = new JLabel("GabiGincana Control Panel");
-		lblGabigincanaControlPanel.setBounds(33, 11, 356, 33);
+		JLabel lblGabigincanaControlPanel = new JLabel("SMRGincana Control Panel");
+		lblGabigincanaControlPanel.setBounds(10, 11, 408, 33);
 		frm.getContentPane().add(lblGabigincanaControlPanel);
 		lblGabigincanaControlPanel.setFont(new Font("MV Boli", Font.BOLD, 20));
+		lblGabigincanaControlPanel.setHorizontalAlignment(JLabel.CENTER);
+		
+		scllLog = new JScrollPane();
+		scllLog.setBounds(10, 150, 408, 217);
+		frm.getContentPane().add(scllLog);
+		
+		txtLog = new JTextArea();
+		txtLog.setLineWrap(true);
+		scllLog.setViewportView(txtLog);
+		txtLog.setEditable(false);
+		txtLog.setForeground(Color.BLACK);
+		txtLog.setBackground(Color.WHITE);
+		
+		scllClients = new JScrollPane();
+		scllClients.setBounds(10, 378, 408, 158);
+		frm.getContentPane().add(scllClients);
+		
+		txtInfo = new JTextArea();
+		txtInfo.setLineWrap(true);
+		scllClients.setViewportView(txtInfo);
+		txtInfo.setForeground(Color.BLACK);
+		txtInfo.setEditable(false);
+		txtInfo.setBackground(Color.WHITE);
 		
 		frm.setVisible(true);
+	}
+	
+	public void printLog(String txt){
+		this.txtLog.setText(this.txtLog.getText()+new Date()+" | "+txt);
+		Dimension tamanhoTextArea = txtLog.getSize();
+		Point p = new Point(
+		   0,
+		   tamanhoTextArea.height);
+		scllLog.getViewport().setViewPosition(p);
+	}
+	
+	public void printClients(String txt){
+		this.txtInfo.setText(txt);
 	}
 }
