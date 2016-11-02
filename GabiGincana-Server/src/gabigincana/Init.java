@@ -15,12 +15,16 @@ public class Init {
 		GUI gui = new GUI();
 		gui.frm.setVisible(true);
 		System.out.println("[GabiGincana] Interfaz grafica [OK]");
+		gui.btnIniciarServidor.setEnabled(true);
+		gui.btnDesconectarServidor.setEnabled(false);
 		
 		gui.btnIniciarServidor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("[GabiGincana] Iniciado servidor puerto: " + gui.inPort.getText().toString());
 				try{
-					serv = new Server(Integer.parseInt(gui.inPort.getText()), Integer.parseInt(gui.inMaxClients.getText()));
+					serv = new Server(Integer.parseInt(gui.inPort.getText()), Integer.parseInt(gui.inMaxClients.getText()), gui);
+					gui.btnIniciarServidor.setEnabled(false);
+					gui.btnDesconectarServidor.setEnabled(true);
 				}catch(Exception e){
 					System.out.println("[GabiGincana] [ERROR] Error al iniciar servidor, se necesitan datos numericos");
 					JOptionPane.showMessageDialog(gui.frm, "Error al iniciar servidor, comprueba que los datos introducidos (Puerto y maxClientes) son valores numericos enteros");
@@ -33,9 +37,10 @@ public class Init {
 				try{
 					if(serv.serverSocket.isBound()){
 						serv.closeConnections();
+						gui.btnIniciarServidor.setEnabled(true);
+						gui.btnDesconectarServidor.setEnabled(false);
 					}
-					System.out.println("[GabiGincana] Conexiones cerradas, saliendo del programa [OK]");
-					System.exit(1);
+					System.out.println("[GabiGincana] Conexiones cerradas [OK]");
 				}catch(IOException err){
 					System.out.println("[GabiGincana] Error al cerrar conexiones [ERROR] [" + err.toString() + "]");
 				}
