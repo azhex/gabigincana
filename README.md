@@ -6,8 +6,8 @@ Descripción del proyecto:
 
 Diagrama del proyecto:
 
-Cliente -> Android App > Lector QR > Cliente sockets
-Servidor -> Servidor sockets > Maneja las conexiones y las puntuaciones de los clientes
+Cliente -> Android App > Servidor bluetooth > Servidor sockets
+Servidor -> Servidor sockets > Maneja las conexiones y las puntuaciones de los clientes > Controla las raspberry pi (servidor bluetooth)
 
 Participantes:
 
@@ -15,4 +15,5 @@ Participantes:
 -Alberto Ferrero
 -Adrian Dobarro
 -Sergio Guzman
--Chen 
+-Kevin
+-Jaime
