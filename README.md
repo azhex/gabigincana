@@ -1,4 +1,4 @@
-# gabigincana
+# SMRGincana
 Proyecto de informática, gincana con raspberry pi, para fp smr 1º
 
 Descripción del proyecto:
